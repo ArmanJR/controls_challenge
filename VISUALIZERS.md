@@ -1,6 +1,6 @@
 # Visualization Tools
 
-Two standalone visualization tools for analyzing and tuning controllers in the comma controls challenge.
+Three standalone visualization tools for analyzing and tuning controllers in the comma controls challenge.
 
 ## Pygame Trajectory Viewer (`viz_realtime.py`)
 
@@ -77,8 +77,44 @@ Options:
 
 ---
 
+## Rerun Viewer (`viz_rerun.py`)
+
+Interactive viewer built on [Rerun](https://rerun.io/) with native timeline scrubbing, multi-controller comparison, and 2D trajectory rendering. Saves a `.rrd` file and opens it in the Rerun viewer.
+
+### What it shows
+
+- **Left pane** — 2D trajectory view:
+  - Target path (gray) and actual path (color-coded green→yellow→red by tracking error)
+  - Animated position marker that moves with the timeline
+- **Right pane** — 5 stacked time-series charts:
+  - Lateral acceleration (target + actual overlaid)
+  - Steering commands
+  - Jerk
+  - Velocity
+  - Tracking error
+- **Timeline scrubber** — drag to animate through simulation steps; play/pause controls built into Rerun
+
+### Usage
+
+```bash
+# Single controller, single file
+uv run viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/00000.csv --controller pid
+
+# Compare two controllers side-by-side
+uv run viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/00000.csv --controller pid zero
+
+# Batch mode — first 5 segments
+uv run viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/ --controller pid --num_segs 5
+```
+
+Options:
+- `--controller` — one or more controllers from `controllers/` (default: `pid`)
+- `--num_segs` — number of segments to process in batch mode (default: `10`)
+
+---
+
 ## Dependencies
 
-Both scripts use [inline script metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/) so `uv run` installs dependencies automatically. No changes to the project's `requirements.txt` are needed.
+All scripts use [inline script metadata](https://packaging.python.org/en/latest/specifications/inline-script-metadata/) so `uv run` installs dependencies automatically. No changes to the project's `requirements.txt` are needed.
 
-Additional packages used: `pygame`, `plotly`, `dash`.
+Additional packages used: `pygame`, `plotly`, `dash`, `rerun-sdk`.
