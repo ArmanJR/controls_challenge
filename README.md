@@ -61,6 +61,22 @@ Competitive scores (`total_cost<100`) will be added to the leaderboard
 python eval.py --model_path ./models/tinyphysics.onnx --data_path ./data --num_segs 5000 --test_controller <insert your controller name> --baseline_controller pid
 ```
 
+## Visualization
+[Rerun](https://rerun.io/)-based viewer with timeline scrubbing, multi-controller comparison, and 2D trajectory rendering.
+
+![Rerun viewer](imgs/rerun.png)
+
+```
+# single segment
+uv run viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/00000.csv --controller pid
+
+# compare two controllers
+uv run viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/00000.csv --controller pid zero
+
+# batch mode
+uv run viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/ --controller pid --num_segs 5
+```
+
 ## Changelog
 - With [this commit](https://github.com/commaai/controls_challenge/commit/fdafbc64868b70d6ec9c305ab5b52ec501ea4e4f) we made the simulator more robust to outlier actions and changed the cost landscape to incentivize more aggressive and interesting solutions.
 - With [this commit](https://github.com/commaai/controls_challenge/commit/4282a06183c10d2f593fc891b6bc7a0859264e88) we fixed a bug that caused the simulator model to be initialized wrong.
