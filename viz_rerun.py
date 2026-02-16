@@ -1,24 +1,12 @@
-# /// script
-# requires-python = ">=3.10"
-# dependencies = [
-#   "rerun-sdk>=0.21",
-#   "numpy",
-#   "onnxruntime",
-#   "pandas",
-#   "tqdm",
-#   "matplotlib",
-#   "seaborn",
-# ]
-# ///
 """Rerun-based visualizer for the comma controls challenge.
 
 Supports multi-controller comparison, 2D trajectory rendering,
 and native timeline scrubbing.
 
 Usage:
-  uv run viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/00000.csv --controller pid
-  uv run viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/00000.csv --controller pid zero
-  uv run viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/ --controller pid --num_segs 5
+  python viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/00000.csv --controller pid
+  python viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/00000.csv --controller pid zero
+  python viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/ --controller pid --num_segs 5
 """
 
 import argparse
