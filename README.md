@@ -68,13 +68,13 @@ python eval.py --model_path ./models/tinyphysics.onnx --data_path ./data --num_s
 
 ```
 # single segment
-uv run viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/00000.csv --controller pid
+python viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/00000.csv --controller pid
 
 # compare two controllers
-uv run viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/00000.csv --controller pid zero
+python viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/00000.csv --controller pid zero
 
 # batch mode
-uv run viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/ --controller pid --num_segs 5
+python viz_rerun.py --model_path ./models/tinyphysics.onnx --data_path ./data/ --controller pid --num_segs 5
 ```
 
 ## Changelog
